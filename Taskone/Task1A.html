@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task One A </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            max-width: 500px;
+            margin: auto;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Operation Output</h2>
+        <p id="operationInfo">Waiting for input...</p>
+    </div>
+    <div class="container">
+        <h2>Marks</h2>
+        <p id="markInfo">Waiting for input...</p>
+    </div>
+
+    <div class="container">
+        <h2>Task 3: Equation with π</h2>
+        <p id="piInfo">Waiting...</p>
+    </div>
+    <div class="container">
+        <h2>Task 4: Compare x and y</h2>
+        <p id="xyInfo">Waiting for input...</p>
+
+
+        <script>
+
+            /*------------Task 1 ------------------*/
+            let operation = prompt("Enter the operation (+, -, *, /):");
+            let num1 = Number(prompt("Enter the first number:"));
+            let num2 = Number(prompt("Enter the second number:"));
+            let result;
+
+            switch (operation) {
+                case "+":
+                    result = num1 + num2;
+                    break;
+                case "-":
+                    result = num1 - num2;
+                    break;
+                case "*":
+                    result = num1 * num2;
+                    break;
+                case "/":
+                    result = (num2 !== 0) ? (num1 / num2) : "Error (Division by zero)";
+                    break;
+
+                default:
+                    result = "Invalid operation";
+            }
+
+            document.getElementById("operationInfo").innerHTML =
+                "Operation: " + num1 + " " + operation + " " + num2;
+
+            console.log("Result: ", result);
+
+
+            /*------------Task 2 ------------------*/
+            let marks = 87;
+            let grade;
+
+            if (marks >= 90 && marks <= 100) {
+                grade = "A+";
+            } else if (marks >= 80 && marks <= 89) {
+                grade = "A";
+            } else if (marks >= 70 && marks <= 79) {
+                grade = "B";
+            } else if (marks >= 60 && marks <= 69) {
+                grade = "C";
+            } else if (marks >= 50 && marks <= 59) {
+                grade = "D";
+            } else if (marks >= 0 && marks < 50) {
+                grade = "FAIL";
+            } else {
+                grade = "Invalid marks";
+            }
+
+
+            document.getElementById("markInfo").innerHTML =
+                "Marks: " + marks + " - Grade: " + grade;
+            console.log("Task 2 - Grade:", grade);
+
+
+            /*-----------------Task 3 ------------------*/
+            const pi = Math.PI;
+            let radius = 5;
+            let area = pi * radius * radius;
+            document.getElementById("piInfo").innerHTML =
+                "Radius: " + radius + " - Area: " + area.toFixed(2);
+            console.log("Task 3 - Area of circle =", area);
+
+
+            /*-----------------Task 4 ------------------*/
+
+            let x = Number(prompt("Enter the value of x:"));
+            let y = Number(prompt("Enter the value of y:"));
+            let message;
+            if (x > y) {
+                message = "Hello World";
+            } else {
+                message = "Goodbye";
+            }
+            document.getElementById("xyInfo").innerHTML =
+                "x = " + x + " , y = " + y + " → " + message;
+
+            console.log("Task 4 Result:", message);
+            alert(message);
+
+
+
+
+
+        </script>
+
+</body>
+
+</html>
