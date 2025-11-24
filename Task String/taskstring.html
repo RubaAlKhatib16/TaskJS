@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task String</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        font-family: Arial;
+    }
+
+    table td,
+    table th {
+        border: 1px solid #888;
+        padding: 8px;
+        text-align: center;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    table tr:first-child {
+        background-color: #dfe4ea;
+    }
+</style>
+
+<body>
+    <h3>Task String Methods</h3>
+    <table border="1" style="border-collapse: collapse; width: 100%; text-align: center;">
+        <tr style="background-color:#f0f0f0; font-weight:bold;">
+            <td>#</td>
+            <td>Method</td>
+            <td>Description</td>
+            <td>Difference / Notes</td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>trim()</td>
+            <td>Remove spaces (start & end)</td>
+            <td>Removes both sides</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>trimStart()</td>
+            <td>Remove spaces at start</td>
+            <td>Only left side</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>trimEnd()</td>
+            <td>Remove spaces at end</td>
+            <td>Only right side</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>padStart()</td>
+            <td>Add characters at start</td>
+            <td>Used for alignment</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>padEnd()</td>
+            <td>Add characters at end</td>
+            <td>Similar to padStart</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>charAt()</td>
+            <td>Get char at index</td>
+            <td>Returns "" if out of range</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>charCodeAt()</td>
+            <td>Get ASCII code</td>
+            <td>Technical usage</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>split()</td>
+            <td>Split string to array</td>
+            <td>Uses a separator</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>length</td>
+            <td>Get string length</td>
+            <td>Includes spaces</td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>slice()</td>
+            <td>Extract part of string</td>
+            <td>Accepts negative values</td>
+        </tr>
+        <tr>
+            <td>11</td>
+            <td>substring()</td>
+            <td>Extract part of string</td>
+            <td>No negative values</td>
+        </tr>
+        <tr>
+            <td>12</td>
+            <td>substr()</td>
+            <td>Extract using (start, length)</td>
+            <td>Deprecated (avoid using)</td>
+        </tr>
+        <tr>
+            <td>13</td>
+            <td>replace()</td>
+            <td>Replace first match</td>
+            <td>Does not replace all</td>
+        </tr>
+        <tr>
+            <td>14</td>
+            <td>replaceAll()</td>
+            <td>Replace all matches</td>
+            <td>Stronger than replace</td>
+        </tr>
+        <tr>
+            <td>15</td>
+            <td>toUpperCase()</td>
+            <td>Convert to UPPERCASE</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>16</td>
+            <td>toLowerCase()</td>
+            <td>Convert to lowercase</td>
+            <td>-</td>
+        </tr>
+        <tr>
+            <td>17</td>
+            <td>concat()</td>
+            <td>Join strings</td>
+            <td>Alternative to (+)</td>
+        </tr>
+        <tr>
+            <td>18</td>
+            <td>indexOf()</td>
+            <td>First occurrence</td>
+            <td>Returns -1 if not found</td>
+        </tr>
+        <tr>
+            <td>19</td>
+            <td>lastIndexOf()</td>
+            <td>Last occurrence</td>
+            <td>Searches backwards</td>
+        </tr>
+        <tr>
+            <td>20</td>
+            <td>search()</td>
+            <td>Search using regex</td>
+            <td>More powerful than indexOf</td>
+        </tr>
+        <tr>
+            <td>21</td>
+            <td>match()</td>
+            <td>Return array of matches</td>
+            <td>Returns null if no match</td>
+        </tr>
+        <tr>
+            <td>22</td>
+            <td>matchAll()</td>
+            <td>Return iterator for matches</td>
+            <td>Use with [... ] to view</td>
+        </tr>
+        <tr>
+            <td>23</td>
+            <td>includes()</td>
+            <td>Check if exists</td>
+            <td>Returns true/false</td>
+        </tr>
+        <tr>
+            <td>24</td>
+            <td>startsWith()</td>
+            <td>Check start of string</td>
+            <td>Case-sensitive</td>
+        </tr>
+        <tr>
+            <td>25</td>
+            <td>endsWith()</td>
+            <td>Check end of string</td>
+            <td>Case-sensitive</td>
+        </tr>
+    </table>
+
+    <script>
+        let fullName = "   Ruba Al-Khatib   ";
+
+        console.log("Original String:", fullName);
+
+        console.log("1. trim():", fullName.trim()); // يشيل الفراغات من البداية والنهاية
+
+        console.log("2. trimStart():", fullName.trimStart()); // يشيل من البداية 
+
+        console.log("3. trimEnd():", fullName.trimEnd()); // يشيل من النهاية 
+
+        console.log("4. padStart(20, '*'):", fullName.trim().padStart(20, '*')); // يضيف * من البداية إذا أقل من 20 حرف
+
+        console.log("5. padEnd(20, '*'):", fullName.trim().padEnd(20, '*')); // يضيف * من النهاية إذا أقل من 20 حرف
+
+        console.log("6. charAt(2):", fullName.trim().charAt(2)); // الحرف في الإندكس 2
+
+        console.log("7. charCodeAt(2):", fullName.trim().charCodeAt(2)); // كود ASCII للحرف
+
+        console.log("8. split(' '):", fullName.trim().split(" ")); // يقسم حسب الفراغ
+
+        console.log("9. length:", fullName.length); // الطول مع الفراغات
+
+        console.log("10. slice(0, 4):", fullName.trim().slice(0, 4)); // من 0 لحد 4 
+
+        console.log("11. substring(0, 4):", fullName.trim().substring(0, 4)); // نفس slice لكن ما بياخد قيم سالبة
+
+        console.log("12. substr(0, 4):", fullName.trim().substr(0, 4)); // من 0 طول 4 أحرف (Deprecated)
+
+        console.log("13. replace('Ruba', 'Ruby'):", fullName.trim().replace("Ruba", "Ruby")); // يستبدل أول تطابق
+
+        console.log("14. replaceAll('-', ' '):", fullName.trim().replaceAll("-", " ")); // كل التطابقات
+
+        console.log("15. toUpperCase():", fullName.trim().toUpperCase()); // أحرف كبيرة
+
+        console.log("16. toLowerCase():", fullName.trim().toLowerCase()); // أحرف صغيرة
+
+        console.log("17. concat(' 👩‍💻'):", fullName.trim().concat(" 👩‍💻")); // دمج نصوص
+
+        console.log("18. indexOf('a'):", fullName.trim().indexOf("a")); // أول ظهور للحرف
+
+        console.log("19. lastIndexOf('a'):", fullName.trim().lastIndexOf("a")); // آخر ظهور للحرف
+
+        console.log("20. search('Al'):", fullName.trim().search("Al")); // نفس indexOf لكن يقبل regex
+
+        console.log("21. match(/a/g):", fullName.trim().match(/a/g)); // يرجع Array لكل الـ 'a'
+
+        console.log("22. matchAll(/a/g):", [...fullName.trim().matchAll(/a/g)]); // يرجع Iterator
+
+        console.log("23. includes('Ruba'):", fullName.trim().includes("Ruba")); // يحتوي أو لا
+
+        console.log("24. startsWith('Ruba'):", fullName.trim().startsWith("Ruba")); // يبدأ بـ
+
+        console.log("25. endsWith('Khatib'):", fullName.trim().endsWith("Khatib")); // ينتهي بـ
+
+    </script>
+
+
+</body>
+
+</html>

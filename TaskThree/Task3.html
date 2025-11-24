@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Three</title>
+</head>
+
+<body>
+    <h3>Task js Three</h3>
+    <script>
+        /*Task 3 A*/
+        function tellFortune(jobTitle, location, partnerName, numberOfKids) {
+            return "You will be a " + jobTitle + " in " + location + ", and married to " + partnerName + " with " + numberOfKids + " kids.";
+        }
+        let jobTitle = prompt("Enter your job title:");
+        let location = prompt("Enter your location:");
+        let partnerName = prompt("Enter your partner's name:");
+        let numberOfKids = prompt("Enter number of kids:");
+        let fortune = tellFortune(jobTitle, location, partnerName, numberOfKids);
+        document.write(fortune + "<br><br>");
+
+        /*Task 3 B*/
+        function calculateDogAge(age) {
+            let dogAge = age * 7;  
+            return "Your doggie is " + dogAge + " years old in dog years!";
+        }
+        let age = Number(prompt("Enter your dog's age:"));
+        console.log(calculateDogAge(age));
+
+    </script>
+</body>
+
+</html>
