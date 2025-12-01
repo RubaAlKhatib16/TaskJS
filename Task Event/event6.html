@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation</title>
+</head>
+<body>
+    <label>Animation Duration (seconds): </label>
+<input type="number" id="duration" value="2" min="1">
+<button id="startBtn">Start Animation</button>
+
+<br><br>
+
+<div id="box"></div>
+<style>
+    #box {
+        width: 100px;
+        height: 100px;
+        background-color: rgb(247, 84, 25);
+        position: relative;
+    }
+</style>
+<script>
+    const box = document.getElementById('box');
+    const startBtn = document.getElementById('startBtn');
+    const durationInput = document.getElementById('duration');
+
+    startBtn.addEventListener('click', () => {
+        const duration = parseFloat(durationInput.value);
+        box.style.transition = `transform ${duration}s linear`;
+        box.style.transform = 'translateX(400px)';
+
+        // Reset position after animation completes
+        setTimeout(() => {
+            box.style.transition = '';
+            box.style.transform = 'translateX(0)';
+        }, duration * 1000);
+    });
+</script>
+</body>
+</html>

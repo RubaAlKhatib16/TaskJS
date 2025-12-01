@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Type</title>
+</head>
+<body>
+    <select id="fontType">
+  <option value="Arial">Arial</option>
+  <option value="Times New Roman">Times New Roman</option>
+  <option value="Courier New">Courier New</option>
+  <option value="Verdana">Verdana</option>
+</select>
+
+<select id="fontSize">
+  <option value="12px">12px</option>
+  <option value="14px">14px</option>
+  <option value="16px">16px</option>
+  <option value="18px">18px</option>
+  <option value="20px">20px</option>
+</select>
+
+<label><input type="checkbox" id="italic"> Italic</label>
+<label><input type="checkbox" id="bold"> Bold</label>
+<label><input type="checkbox" id="underline"> Underline</label>
+
+<br><br>
+
+<textarea id="textBox" rows="6" cols="60">The quick brown fox jumps over the lazy dog</textarea>
+
+<script>
+    const fontTypeSelect = document.getElementById('fontType');
+    const fontSizeSelect = document.getElementById('fontSize');
+    const italicCheckbox = document.getElementById('italic');
+    const boldCheckbox = document.getElementById('bold');
+    const underlineCheckbox = document.getElementById('underline');
+    const textBox = document.getElementById('textBox');
+
+    function updateTextBoxStyle() {
+        textBox.style.fontFamily = fontTypeSelect.value;
+        textBox.style.fontSize = fontSizeSelect.value;
+        textBox.style.fontStyle = italicCheckbox.checked ? 'italic' : 'normal';
+        textBox.style.fontWeight = boldCheckbox.checked ? 'bold' : 'normal';
+        textBox.style.textDecoration = underlineCheckbox.checked ? 'underline' : 'none';
+    }
+
+    fontTypeSelect.addEventListener('change', updateTextBoxStyle);
+    fontSizeSelect.addEventListener('change', updateTextBoxStyle);
+    italicCheckbox.addEventListener('change', updateTextBoxStyle);
+    boldCheckbox.addEventListener('change', updateTextBoxStyle);
+    underlineCheckbox.addEventListener('change', updateTextBoxStyle);
+
+    updateTextBoxStyle();
+</script>
+</body>
+</html>

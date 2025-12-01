@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hover</title>
+</head>
+<body>
+
+<div id="textBox">Hello world!</div>
+
+<script>
+  const box = document.getElementById("textBox");
+
+  box.addEventListener("mouseover", function () {
+    box.style.backgroundColor = "yellow";
+    box.style.fontWeight = "bold";
+  });
+
+  box.addEventListener("mouseout", function () {
+    box.style.backgroundColor = "";
+    box.style.fontWeight = "normal";
+  });
+</script>
+
+<style>
+  #textBox {
+    padding: 15px;
+    background-color: rgb(245, 245, 245);
+    font-size: 24px;
+    width: fit-content;
+    transition: 0.3s;
+  }
+</style>
+
+</body>
+</html>

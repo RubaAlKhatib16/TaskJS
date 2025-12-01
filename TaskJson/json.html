@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Json</title>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Name">
+<input type="text" id="email" placeholder="Email">
+<input type="text" id="mobile" placeholder="Mobile">
+<button onclick="addUser()">Add</button>
+
+<pre id="output"></pre>
+<script>
+  const users = [];
+
+  function addUser() {
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const mobile = document.getElementById("mobile").value;
+
+    const user = {
+      name: name,
+      email: email,
+      mobile: mobile
+    };
+
+    users.push(user);
+    document.getElementById("output").textContent = JSON.stringify(users, null, 2);
+
+    // Clear input fields
+    document.getElementById("name").value = '';
+    document.getElementById("email").value = '';
+    document.getElementById("mobile").value = '';
+  }
+</script>
+<script src="json.js"></script>
+</body>
+</html>

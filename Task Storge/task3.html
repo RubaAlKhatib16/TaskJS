@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Task 3 – Registration</h2>
+
+<form>
+    <input type="text" id="fname" placeholder="First Name"><br><br>
+    <input type="text" id="lname" placeholder="Last Name"><br><br>
+    <input type="email" id="regEmail" placeholder="Email"><br><br>
+    <input type="password" id="regPass" placeholder="Password"><br><br>
+    <button type="button" onclick="register()">Register</button>
+</form>
+
+<hr>
+
+<h2>Login</h2>
+
+<form>
+    <input type="email" id="logEmail" placeholder="Email"><br><br>
+    <input type="password" id="logPass" placeholder="Password"><br><br>
+    <button type="button" onclick="login()">Login</button>
+</form>
+
+<p id="loginResult"></p>
+<script>
+function register() {
+    let user = {
+        fname: document.getElementById("fname").value,
+        lname: document.getElementById("lname").value,
+        email: document.getElementById("regEmail").value,
+        pass: document.getElementById("regPass").value
+    };
+
+    localStorage.setItem("registeredUser", JSON.stringify(user));
+    alert("Registered Successfully!");
+}
+
+function login() {
+    let saved = JSON.parse(localStorage.getItem("registeredUser"));
+
+    let email = document.getElementById("logEmail").value;
+    let pass = document.getElementById("logPass").value;
+
+    if (!saved) {
+        document.getElementById("loginResult").innerHTML = "No registered users!";
+        return;
+    }
+
+    if (email === saved.email && pass === saved.pass) {
+        document.getElementById("loginResult").innerHTML = "Login successful 🎉";
+    } else {
+        document.getElementById("loginResult").innerHTML = "Wrong email or password ❌";
+    }
+}
+</script>
+</body>
+</html>

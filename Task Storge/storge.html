@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Task 1 – Personal Data</h2>
+
+<form id="personalForm">
+    <label>Name:</label>
+    <input type="text" id="name"><br><br>
+
+    <label>Age:</label>
+    <input type="number" id="age"><br><br>
+
+    <label>Gender:</label>
+    <select id="gender">
+        <option value="Female">Female</option>
+        <option value="Male">Male</option>
+    </select><br><br>
+
+    <label>Description:</label><br>
+    <textarea id="desc"></textarea><br><br>
+
+    <label>Major & University:</label>
+    <input type="text" id="major"><br><br>
+
+    <label>Programming Languages:</label><br>
+    <input type="checkbox" value="HTML" class="lang"> HTML<br>
+    <input type="checkbox" value="CSS" class="lang"> CSS<br>
+    <input type="checkbox" value="JavaScript" class="lang"> JavaScript<br>
+    <input type="checkbox" value="Python" class="lang"> Python<br>
+    <input type="checkbox" value="PHP" class="lang"> PHP<br><br>
+
+    <button type="button" onclick="savePersonal()">Submit</button>
+</form>
+
+<hr>
+
+<h3>Stored Personal Info</h3>
+<div id="personalCards"></div>
+<script>
+    function savePersonal() {
+    let name = document.getElementById("name").value;
+    let age = document.getElementById("age").value;
+    let gender = document.getElementById("gender").value;
+    let desc = document.getElementById("desc").value;
+    let major = document.getElementById("major").value;
+
+    let langs = [];
+    document.querySelectorAll(".lang:checked").forEach(l => langs.push(l.value));
+
+    let data = {
+        name,
+        age,
+        gender,
+        desc,
+        major,
+        langs
+    };
+
+    localStorage.setItem("personalData", JSON.stringify(data));
+    renderPersonal();
+}
+
+function renderPersonal() {
+    let container = document.getElementById("personalCards");
+    let data = JSON.parse(localStorage.getItem("personalData"));
+
+    if (!data) return;
+
+    container.innerHTML = `
+        <div style="border:1px solid #333; padding:15px; width:300px; margin:10px; border-radius:10px;">
+            <h3>${data.name} (${data.gender})</h3>
+            <p><b>Age:</b> ${data.age}</p>
+            <p><b>Description:</b> ${data.desc}</p>
+            <p><b>Major:</b> ${data.major}</p>
+            <p><b>Languages:</b> ${data.langs.join(", ")}</p>
+        </div>
+    `;
+}
+
+renderPersonal();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text</title>
+</head>
+<body>
+    <div class="section">
+  <h2>What is lorem ipsum? <a href="#" class="toggleBtn">Show</a></h2>
+  <p class="content">Lorem ipsum dolor sit amet...</p>
+</div>
+
+<div class="section">
+  <h2>Why do we use it? <a href="#" class="toggleBtn">Show</a></h2>
+  <p class="content">It is a long established fact that a reader will be distracted...</p>
+</div>
+
+<div class="section">
+  <h2>Where does it come from? <a href="#" class="toggleBtn">Show</a></h2>
+  <p class="content">Contrary to popular belief...</p>
+</div>
+
+<script>
+    let buttons = document.querySelectorAll(".toggleBtn");
+
+buttons.forEach(function (btn) {
+  btn.addEventListener("click", function (e) {
+    e.preventDefault(); 
+
+    let content = this.parentElement.nextElementSibling;
+
+    if (content.style.display === "none" || content.style.display === "") {
+      content.style.display = "block";
+      this.textContent = "Hide";
+    } else {
+      content.style.display = "none";
+      this.textContent = "Show";
+    }
+  });
+});
+
+</script>
+</body>
+</html>

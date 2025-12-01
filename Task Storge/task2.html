@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Task 2 – Project </h2>
+
+<form id="projectForm">
+    <label>Subject:</label>
+    <input type="text" id="sub"><br><br>
+
+    <label>Description:</label><br>
+    <textarea id="pdesc"></textarea><br><br>
+
+    <label>User Types:</label>
+    <input type="text" id="users"><br><br>
+
+    <label>Technology Used:</label>
+    <input type="text" id="tech"><br><br>
+
+    <button type="button" onclick="saveProject()">Submit</button>
+</form>
+
+<hr>
+
+<h3>Stored Project</h3>
+<div id="projectCards"></div>
+<script>
+    function saveProject() {
+    let project = {
+        subject: document.getElementById("sub").value,
+        desc: document.getElementById("pdesc").value,
+        users: document.getElementById("users").value,
+        tech: document.getElementById("tech").value
+    };
+
+    sessionStorage.setItem("projectData", JSON.stringify(project));
+    renderProject();
+}
+
+function renderProject() {
+    let container = document.getElementById("projectCards");
+    let p = JSON.parse(sessionStorage.getItem("projectData"));
+
+    if (!p) return;
+
+    container.innerHTML = `
+        <div style="border:1px solid #444; padding:15px; margin:10px; width:300px; border-radius:10px;">
+            <h3>${p.subject}</h3>
+            <p><b>Description:</b> ${p.desc}</p>
+            <p><b>User Types:</b> ${p.users}</p>
+            <p><b>Technology:</b> ${p.tech}</p>
+        </div>
+    `;
+}
+
+renderProject();
+       
+</script>
+</body>
+</html>

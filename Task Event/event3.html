@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>password</title>
+</head>
+<body>
+    <label>Password (min 6 characters):</label>
+<input type="password" id="password">
+<span id="passError" style="color:red;"></span>
+<br><br>
+
+<label>Repeat password:</label>
+<input type="password" id="confirmPassword">
+<span id="confirmError" style="color:red;"></span>
+<br><br>
+<button id="submitBtn">Submit</button>
+<script>
+    document.getElementById("password").addEventListener("input", function () {
+    let password = this.value;
+    let error = document.getElementById("passError");
+
+    if (password.length < 6) {
+        error.textContent = "Too short";
+    } else {
+        error.textContent = "";
+    }
+});
+
+document.getElementById("confirmPassword").addEventListener("input", function () {
+    let password = document.getElementById("password").value;
+    let confirmPassword = this.value;
+    let error = document.getElementById("confirmError");
+
+    if (confirmPassword !== password) {
+        error.textContent = "The two passwords don't match";
+    } else {
+        error.textContent = ""; 
+    }
+});
+
+</script>
+</body>
+</html>

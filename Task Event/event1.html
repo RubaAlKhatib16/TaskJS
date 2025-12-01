@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Country</title>
+</head>
+<body>
+    <select id="countrySelect">
+  <option value="">-- Select a country --</option>
+  <option value="norway">Norway</option>
+  <option value="germany">Germany</option>
+  <option value="france">France</option>
+  <option value="jordan">Jordan</option>
+</select>
+
+<br><br>
+
+<img id="flagImage" src="" alt="Country Flag" width="300" height="180">
+<script>
+  const countrySelect = document.getElementById("countrySelect");
+  const flagImage = document.getElementById("flagImage");
+
+  const countryFlags = {
+    norway: "https://flagcdn.com/w320/no.png",
+    germany: "https://flagcdn.com/w320/de.png",
+    france: "https://flagcdn.com/w320/fr.png",
+    jordan: "https://flagcdn.com/w320/jo.png"
+  };
+
+  countrySelect.addEventListener("change", function () {
+    const selectedCountry = countrySelect.value;
+    if (countryFlags[selectedCountry]) {
+      flagImage.src = countryFlags[selectedCountry];
+      flagImage.alt = selectedCountry.charAt(0).toUpperCase() + selectedCountry.slice(1) + " Flag";
+    } else {
+      flagImage.src = "";
+      flagImage.alt = "Country Flag";
+    }
+  });
+</script>
+</body>
+</html>

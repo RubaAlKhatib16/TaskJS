@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Task Register 10</h2>
+            <!--
+Registration form contains :
+1- first name
+2- last name
+3- birth date
+4- email with confirmation(two inputs)
+5- password with confirmation(two inputs)
+ 
+1- check if the name has just letters.
+2- determine the birth date input and check for it in the right way
+3-check the email structure by regular expression and if the structure has an error use  the Error handling 
+4- check if the two emails are the same or not.
+5- password :
+a- start with a capital letter
+b- having at least two numbers
+c- at least one special character or symbol
+d- check if the pass confirmation is right
+e-password length should be between 8 and 32
+6-mobile number should be 10 numbers
+-->
+
+
+
+    <form id="registrationForm" novalidate>
+        <div>
+            <label for="firstName">First Name</label>
+            <input id="firstName" name="firstName" type="text" required>
+            <span class="error" id="err-firstName"></span>
+        </div>
+        <div>
+            <label for="lastName">Last Name</label>
+            <input id="lastName" name="lastName" type="text" required>
+            <span class="error" id="err-lastName"></span>
+        </div>
+        <div>
+            <label for="birthDate">Birth Date</label>
+            <input id="birthDate" name="birthDate" type="date" required>
+            <span class="error" id="err-birthDate"></span>
+        </div>
+        <div>
+            <label for="mobile">Mobile</label>
+            <input id="mobile" name="mobile" type="tel" inputmode="numeric" required>
+            <span class="error" id="err-mobile"></span>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+            <span class="error" id="err-email"></span>
+        </div>
+        <div>
+            <label for="emailConfirm">Confirm Email</label>
+            <input id="emailConfirm" name="emailConfirm" type="email" required>
+            <span class="error" id="err-emailConfirm"></span>
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" required>
+            <span class="error" id="err-password"></span>
+        </div>
+        <div>
+            <label for="passwordConfirm">Confirm Password</label>
+            <input id="passwordConfirm" name="passwordConfirm" type="password" required>
+            <span class="error" id="err-passwordConfirm"></span>
+        </div>
+        <div>
+            <button type="submit">Register</button>
+            <span id="form-success" style="color:green; margin-left:10px"></span>
+        </div>
+    </form>
+
+    <style>
+        .error { color: red; font-size: 0.9em; margin-left: 8px }
+        form div { margin: 8px 0 }
+        label { display:inline-block; width:140px }
+        input { padding:4px 6px }
+    </style>
+
+    <script>
+        // Validation helpers
+        const nameRegex = /^[A-Za-z]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+        const specialCharRegex = /[!@#$%^&*(),.?":{}|<>_\-\\\/\[\];'`~+=]/;
+
+        function showError(id, message) {
+            document.getElementById(id).textContent = message || '';
+        }
+
+        function validateName(value) {
+            if (!value) return 'Name is required.';
+            if (!nameRegex.test(value)) return 'Only letters are allowed.';
+            return '';
+        }
+
+        function validateBirthDate(value) {
+            if (!value) return 'Birth date is required.';
+            const d = new Date(value);
+            if (isNaN(d.getTime())) return 'Invalid date.';
+            const now = new Date();
+            if (d > now) return 'Birth date cannot be in the future.';
+            // require minimum age 13
+            const ageDifMs = now - d;
+            const ageDate = new Date(ageDifMs);
+            const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+            if (age < 13) return 'You must be at least 13 years old.';
+            return '';
+        }
+
+        function validateEmail(value) {
+            try {
+                if (!value) throw new Error('Email is required.');
+                if (!emailRegex.test(value)) throw new Error('Email structure is invalid.');
+                return '';
+            } catch (err) {
+                return err.message;
+            }
+        }
+
+        function validateMobile(value) {
+            if (!value) return 'Mobile number is required.';
+            const digits = value.replace(/\D/g, '');
+            if (digits.length !== 10) return 'Mobile number must be exactly 10 digits.';
+            return '';
+        }
+
+        function validatePassword(pw) {
+            if (!pw) return 'Password is required.';
+            if (pw.length < 8 || pw.length > 32) return 'Password length must be between 8 and 32.';
+            if (!/^[A-Z]/.test(pw)) return 'Password must start with a capital letter.';
+            const digits = pw.match(/\d/g) || [];
+            if (digits.length < 2) return 'Password must contain at least two numbers.';
+            if (!specialCharRegex.test(pw)) return 'Password must include at least one special character.';
+            return '';
+        }
+
+        document.getElementById('registrationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // clear previous errors
+            ['err-firstName','err-lastName','err-birthDate','err-mobile','err-email','err-emailConfirm','err-password','err-passwordConfirm'].forEach(id => showError(id, ''));
+            document.getElementById('form-success').textContent = '';
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const birthDate = document.getElementById('birthDate').value;
+            const mobile = document.getElementById('mobile').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const emailConfirm = document.getElementById('emailConfirm').value.trim();
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('passwordConfirm').value;
+
+            let hasError = false;
+
+            const fnErr = validateName(firstName);
+            if (fnErr) { showError('err-firstName', fnErr); hasError = true }
+
+            const lnErr = validateName(lastName);
+            if (lnErr) { showError('err-lastName', lnErr); hasError = true }
+
+            const bdErr = validateBirthDate(birthDate);
+            if (bdErr) { showError('err-birthDate', bdErr); hasError = true }
+
+            const mobErr = validateMobile(mobile);
+            if (mobErr) { showError('err-mobile', mobErr); hasError = true }
+
+            const emErr = validateEmail(email);
+            if (emErr) { showError('err-email', emErr); hasError = true }
+
+            const emConfErr = validateEmail(emailConfirm);
+            if (emConfErr) { showError('err-emailConfirm', emConfErr); hasError = true }
+
+            if (!emErr && !emConfErr && email !== emailConfirm) {
+                showError('err-emailConfirm', 'Emails do not match.');
+                hasError = true;
+            }
+
+            const pwErr = validatePassword(password);
+            if (pwErr) { showError('err-password', pwErr); hasError = true }
+
+            if (!pwErr && password !== passwordConfirm) {
+                showError('err-passwordConfirm', 'Passwords do not match.');
+                hasError = true;
+            }
+
+            if (!hasError) {
+                document.getElementById('form-success').textContent = 'Registration data looks good!';
+                // Here you could submit form data via fetch/XHR or allow default submission
+                // For demo, we prevent default submission and just show success.
+            }
+        });
+    </script>
+</body>
+</html>
